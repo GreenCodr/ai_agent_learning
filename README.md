@@ -1,78 +1,90 @@
-# ai_agent_learning
+🧠 AI Agent Learning From Its Mistakes
 
-A small repo to learn about building AI agents.
+Overview
 
-## What this is
-Simple explanations and commands to run the project. Text instructions are plain sentences. Commands are shown separately in code blocks so they stand out.
+This project demonstrates a simple AI agent that improves its behavior over time by learning from its own mistakes. The primary focus is on feedback loops, evaluation, and behavioral improvement, rather than task complexity.
 
-## Requirements
-- Python 3.10+ (or latest stable)
-- pip
+⸻
 
-## Quick setup
-Follow these steps (each step has a short note and the exact command below it):
+🎯 Objective
 
-1. Create a virtual environment (recommended)
+The agent is required to answer a question only after using a mandatory tool. In early runs, the agent is intentionally allowed to make mistakes such as skipping the required tool. Over multiple runs, the agent evaluates its behavior, records mistakes, and adjusts its actions to avoid repeating the same errors.
 
-Command:
-```
-python -m venv .venv
+⸻
+
+🤖 Agent Behavior
+1. Receives a question as input  
+2. Decides whether to use a required tool  
+3. Produces a final answer  
+4. Gets evaluated for correct behavior  
+5. Learns from mistakes and improves in later runs
+
+🔧 Tools
+
+lookup_tool
+• Simulates fetching information required to answer the question  
+• Must be used before producing the final answer  
+• Skipping this tool is considered a mistake
+
+⸻
+
+❌ Types of Mistakes Handled
+• Skipping the required tool  
+• Producing a final answer too early  
+• Ignoring required steps
+
+These mistakes are allowed in early runs to demonstrate learning.
+
+⸻
+
+🧪 Evaluation and Learning
+
+After each run:  
+• The system evaluates whether the tool was used correctly  
+• If a mistake occurs, it is recorded in memory  
+• When the same mistake happens multiple times, the agent enforces correct behavior in future runs  
+This creates a clear improvement loop.
+
+⸻
+
+📈 Demonstration of Improvement
+
+Example behavior across runs:  
+Run 1 → Failed (tool skipped)  
+Run 2 → Failed (tool skipped)  
+Run 3 → Success (tool enforced)  
+Run 4 → Success  
+Run 5 → Success
+
+This shows that the agent:  
+• Identifies mistakes  
+• Detects recurring patterns  
+• Adjusts behavior to improve over time
+
+🏗️ Project Structure
+ai_agent_learning/  
+│  
+├── run.py      # Complete implementation  
+└── README.md   # Project explanation
+
+▶️ How to Run
+1. Ensure Python 3 is installed  
+2. Navigate to the project directory  
+3. Run the following command:
+
+```bash
+python run.py
 ```
 
-2. Activate the virtual environment
+⚠️ Limitations
+• Learning is rule-based, not model-based  
+• Memory is simple and local  
+• Designed for clarity rather than scale
 
-macOS / Linux:
-```
-source .venv/bin/activate
-```
+These trade-offs were made intentionally to keep the system easy to understand and evaluate.
 
-Windows (PowerShell):
-```
-.\\.venv\\Scripts\\Activate.ps1
-```
+⸻
 
-3. Install dependencies
+✅ Key Takeaway
 
-Command:
-```
-pip install -r requirements.txt
-```
-
-## Run the project
-Short explanation: run the main script to start the agent.
-
-Command:
-```
-python main.py
-```
-
-Optional: run tests
-
-Command:
-```
-pytest
-```
-
-## Commands summary
-- Setup virtual environment:
-```
-python -m venv .venv
-```
-- Activate (macOS / Linux):
-```
-source .venv/bin/activate
-```
-- Install deps:
-```
-pip install -r requirements.txt
-```
-- Run project:
-```
-python main.py
-```
-
-## Contributing
-If you want to help, make small changes, run tests, and open a pull request.
-
-## Questions
-If something is unclear, add an issue or message the repo owner.
+This project focuses on system design, explicit evaluation, and learning from failure, which are essential qualities of an AI agent.
